@@ -2,6 +2,12 @@
 
 Just a simple example using Slim with MtHaml
 
+### Install
+
+You need to setup open read/write permissions to `tmp` directory:
+
+    chmod -R a+rw tmp
+
 ### Features
 
 - caches compiled templates for speed
