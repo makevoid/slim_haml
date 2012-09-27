@@ -7,13 +7,19 @@ require 'MtHaml/Environment.php';
 
 $compiled_templates = array();
 
-function compileHaml($template){
+
+
+function compileHaml($template_name){
   $haml = new MtHaml\Environment('php');
-  if ( is_null($compiled_templates["antani"]) ) {
+  $template = "views/$template_name.haml";
+  $cache_file = "tmp/compiled_views/$template_name.haml";
+  if ( !file_exists($cache_file) ) {
+    $file = fopen($cache_file, "w");
     $compiled = $haml->compileString(file_get_contents($template), $template);
-    $compiled_templates["antani"] = $compiled;
+    fwrite($file, $compiled);
+    fclose($file);
   } else {
-    $compiled = $compiled_templates["antani"];
+    $compiled = readfile($cache_file);
   }
 
   return $compiled;
@@ -28,7 +34,7 @@ $app->get('/', function(){
 });
 
 $app->get('/hello', function(){
-  echo compileHaml('views/hello.haml');
+  echo compileHaml('hello');
 });
 
 $app->get('/hi', function() use ($app){
