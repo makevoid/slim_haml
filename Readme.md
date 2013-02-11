@@ -2,6 +2,11 @@
 
 Just a simple example using Slim with MtHaml
 
+### Configuration
+
+Slim needs apache .htaccess enabled (ex: AllowOverride All), for nginx search
+google (slim nginx htaccess) :) 
+
 ### Install
 
 You need to setup open read/write permissions to `tmp` directory:
@@ -10,7 +15,10 @@ You need to setup open read/write permissions to `tmp` directory:
 
 ### Features
 
-- caches compiled templates for speed
+- slim framework
+- reads external haml and php templates (in /views)
+- caches compiled haml templates for speed 
+
 
 ### foreword
 
